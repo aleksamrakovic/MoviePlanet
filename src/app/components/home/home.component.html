@@ -1,0 +1,55 @@
+<!-- banner -->
+<div class="jumbotron jumbotron-fluid home-banner">
+    <h1 class="display-4">Welcome to the planet of movies!</h1>
+</div>
+
+<div class="container">
+
+    <!-- in cinema section -->
+    <section>
+        <header class="header">
+            <div class="header-title">In cinema</div>
+        </header>
+
+        <mat-tab-group>
+
+            <!--Now Playing Movies-->
+            <mat-tab label="Now Playing Movies">
+                <div class="grid-list">
+                    <div *ngFor="let movie of nowPlaying | slice:0:8">
+                        <app-card [model]="movie"></app-card>
+                    </div>
+                </div>
+            </mat-tab>
+
+            <!--Upcoming Movies Tab-->
+            <mat-tab label="Upcomming Movies">
+                <div class="grid-list">
+                    <div *ngFor="let movie of upcoming | slice:0:8">
+                        <app-card [model]="movie"></app-card>
+                    </div>
+                </div>
+            </mat-tab>
+
+            <!--Popular Movies Tab-->
+            <mat-tab label="Popular Movies">
+                <div class="grid-list">
+                    <div *ngFor="let movie of popular | slice:0:8">
+                        <app-card [model]="movie"></app-card>
+                    </div>
+                </div>
+            </mat-tab>
+
+        </mat-tab-group>
+    </section>
+    <!-- in cinema section END -->
+
+
+    <!-- popular section -->
+    <section>
+
+    </section>
+    <!-- popular section END -->
+</div>
+
+<ngx-spinner></ngx-spinner>

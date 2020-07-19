@@ -1,0 +1,15 @@
+.home-banner {
+    background: url('/assets/images/banner.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header .header-title {
+    font-weight: bold;
+    font-size: 26px;
+}

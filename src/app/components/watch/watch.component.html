@@ -1,0 +1,25 @@
+<!-- banner -->
+<div class="jumbotron jumbotron-fluid home-banner">
+    <h1 class="display-4">Your movies to watch</h1>
+</div>
+
+<div class="container">
+
+    <!-- in cinema section -->
+    <section>
+        <header class="header">
+            <div class="header-title">Watchlist</div>
+        </header>
+
+        <div class="grid-list">
+            <div *ngFor="let movie of watchlist">
+                <app-card [model]="movie"></app-card>
+            </div>
+        </div>
+
+    </section>
+    <!-- in cinema section END -->
+
+</div>
+
+<ngx-spinner></ngx-spinner>

@@ -1,0 +1,29 @@
+.home-banner {
+  text-align: center;
+  background: url("/assets/images/banner.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 30vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header .header-title {
+    font-weight: bold;
+    font-size: 26px;
+    color: #fff!important;
+}
+
+.movie-card {
+    background: transparent;
+    border: none;
+}
+
+.grid-list-cast {
+  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  overflow-x: auto;
+}

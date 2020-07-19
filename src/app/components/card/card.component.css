@@ -1,0 +1,11 @@
+.movie-link:hover {
+    cursor: pointer;
+}
+
+.mat-card-title {
+    font-size: 18px;
+}
+
+.mat-card-image {
+    height: 400px;
+}
