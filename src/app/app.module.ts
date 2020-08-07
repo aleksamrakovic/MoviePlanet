@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 import { appRoutes } from './app.routes';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from "ngx-spinner";
@@ -17,7 +18,10 @@ import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatChipsModule} from '@angular/material/chips';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 
 import { AppComponent } from './app.component';
@@ -28,6 +32,7 @@ import { MoviesComponent } from './components/movies/movies.component';
 import { MovieComponent } from './components/movie/movie.component';
 import { WatchComponent } from './components/watch/watch.component';
 import { FilterPipe } from './services/filter.pipe';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -38,10 +43,13 @@ import { FilterPipe } from './services/filter.pipe';
     MovieComponent,
     WatchComponent,
     FilterPipe,
+    SearchComponent,
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     LayoutModule,
     BrowserAnimationsModule,
     MatSidenavModule,
@@ -54,6 +62,10 @@ import { FilterPipe } from './services/filter.pipe';
     MatGridListModule,
     MatPaginatorModule,
     MatChipsModule,
+    MatSnackBarModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatInputModule,
     RouterModule.forRoot(appRoutes),
     NgxSpinnerModule
   ],

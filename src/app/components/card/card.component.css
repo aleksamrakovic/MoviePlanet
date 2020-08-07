@@ -1,11 +1,16 @@
+.movie-link {
+    display: block;
+}
+
 .movie-link:hover {
     cursor: pointer;
+    opacity: .5;
 }
 
 .mat-card-title {
     font-size: 18px;
-}
-
-.mat-card-image {
-    height: 400px;
+    max-width: 190px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }

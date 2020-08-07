@@ -1,0 +1,32 @@
+<!-- banner -->
+<div class="jumbotron jumbotron-fluid home-banner">
+    <h1 class="display-4">All movies here for you</h1>
+</div>
+
+<div class="container">
+
+    <section>
+        <header class="header mb-4">
+            <div class="header-title">Search</div>
+        </header>
+
+        <p>
+            <mat-form-field appearance="fill" class="d-block">
+              <mat-label>Search movie by name</mat-label>
+              <input matInput #searchInput>
+              <mat-icon matSuffix (click)="searchMovie(searchInput.value)">search</mat-icon>
+            </mat-form-field>
+          </p>
+
+        <div class="grid-list">
+            <div *ngFor="let movie of searchRes | slice:0:12">
+                <app-card [model]="movie"></app-card>
+            </div>
+        </div>
+
+
+    </section>
+
+</div>
+
+<ngx-spinner></ngx-spinner>

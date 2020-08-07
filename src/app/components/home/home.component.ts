@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.spinner.show();
-    this.movieService.getNowPlaying(1).subscribe(
+    this.movieService.getTopRated(1).subscribe(
       res => {
         console.log(res);
         this.nowPlaying = res.results;

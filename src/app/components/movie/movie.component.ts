@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { MoviesService } from 'src/app/services/movies.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { forkJoin, Observable } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-movie',
@@ -17,13 +19,15 @@ export class MovieComponent implements OnInit {
   trailer: any;
   watchlist: any[] = [];
 
-  constructor(private route: ActivatedRoute, private movieService: MoviesService, private spinner: NgxSpinnerService) { }
+  constructor(private route: ActivatedRoute, private movieService: MoviesService, private spinner: NgxSpinnerService, private _snackBar: MatSnackBar, private location: Location) { }
 
   ngOnInit(): void {
     this.spinner.show();
     
     if (JSON.parse(localStorage.getItem('watchlist'))) {
       this.watchlist = JSON.parse(localStorage.getItem('watchlist'));
+      console.log(this.watchlist);
+      
     } else {
       this.watchlist = [];
     }
@@ -70,14 +74,19 @@ export class MovieComponent implements OnInit {
     console.log(model);
     
     console.log(this.watchlist);
-    
-    var index = this.watchlist.indexOf(model);
-    if (index != -1) {
-      alert('Movie is already in the watchlist')
+
+    var index = this.watchlist.includes(model);
+    if (index) {
+      this._snackBar.open('Movie is already in the watchlist', 'Close', { duration: 5000 });
     } else {
       this.watchlist.push(model);
       localStorage.setItem('watchlist', JSON.stringify(this.watchlist));
+      this._snackBar.open('Movie has been added to your watchlist', 'Close', { duration: 5000 });
     }
+  }
+
+  goBack() {
+    this.location.back();
   }
 
 }

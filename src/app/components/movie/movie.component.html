@@ -8,16 +8,16 @@
     <section>
         <header class="header">
             <div class="header-title mb-2">
-                <span routerLink="/all-movies">
-                    << Back to all movies</span>
+                <span (click)="goBack()"><< Back to all movies</span>
             </div>
         </header>
 
         <div class="card mb-3 movie-card" *ngIf="model">
             <div class="row no-gutters">
                 <div class="col-md-4">
-                    <img src="https://image.tmdb.org/t/p/w300/{{model.poster_path}}" class="card-img"
+                    <img *ngIf="model.poster_path" src="https://image.tmdb.org/t/p/w300/{{model.poster_path}}" class="card-img"
                         [alt]="model.title ? model.title : model.name">
+                    <img *ngIf="!model.poster_path" mat-card-image src="assets/images/img-placeholder.jpg" class="card-img">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">

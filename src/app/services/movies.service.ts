@@ -15,8 +15,8 @@ export class MoviesService {
     this.baseUrl = 'https://api.themoviedb.org/3/';
   }
 
-  getNowPlaying(page: number) {
-    return this.http.get<any>(this.baseUrl + 'movie/now_playing?api_key=' + this.myApi + '&language=en-US&page=' + page);
+  getTopRated(page: number) {
+    return this.http.get<any>(this.baseUrl + 'movie/top_rated?api_key=' + this.myApi + '&language=en-US&page=' + page);
   }
 
   getUpcoming(page: number) {
@@ -41,6 +41,10 @@ export class MoviesService {
 
   getTrailer(id) {
     return this.http.get<any>(this.baseUrl + 'movie/' + id + '/videos?api_key=' + this.myApi + '&language=en-Us')
+  }
+
+  searchMovie(query) {
+    return this.http.get<any>(this.baseUrl + 'search/movie/?api_key=' + this.myApi + '&language=en-Us&query=' + query + '&page=1&include_adult=false');
   }
 
 

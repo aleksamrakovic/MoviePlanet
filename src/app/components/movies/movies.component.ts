@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MoviesService } from 'src/app/services/movies.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 
+
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
@@ -19,22 +20,6 @@ export class MoviesComponent implements OnInit {
 
   ngOnInit(): void {
     this.spinner.show();
-    // this.movieService.getNowPlaying(1).subscribe(
-    //   res => {
-    //     console.log(res);
-    //     this.totalNowPlaying = res.total_results;
-    //     this.nowPlaying = res.results;
-        
-    //   }
-    // )
-
-    // this.movieService.getUpcoming().subscribe(
-    //   res => {
-    //     console.log(res);
-    //     this.totalUpcoming = res.total_results;
-    //     this.upcoming = res.results;
-    //   }
-    // )
 
     setTimeout(() => {
       this.movieService.getPopular(1).subscribe(
@@ -46,6 +31,7 @@ export class MoviesComponent implements OnInit {
         }
       )
     }, 1500)
+
   }
 
 

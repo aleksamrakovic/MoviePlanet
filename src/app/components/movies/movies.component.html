@@ -7,25 +7,21 @@
 
     <!-- in cinema section -->
     <section>
-        <header class="header">
+        <header class="header mb-4">
             <div class="header-title">All movies</div>
         </header>
 
-        <mat-tab-group>
+        <div class="grid-list">
+            <div *ngFor="let movie of popular">
+                <app-card [model]="movie"></app-card>
+            </div>
+        </div>
 
-            <!--Now Playing Movies-->
-            <mat-tab label="Most popular movies">
-                <div class="grid-list">
-                    <div *ngFor="let movie of popular">
-                        <app-card [model]="movie"></app-card>
-                    </div>
-                </div>
+        <mat-paginator [length]="totalPopular" [pageSize]="40" (page)="changePage($event)">
+        </mat-paginator>
 
-                <mat-paginator [length]="totalPopular" [pageSize]="40" (page)="changePage($event)">
-                </mat-paginator>
-            </mat-tab>
 
-        </mat-tab-group>
+
     </section>
     <!-- in cinema section END -->
 
