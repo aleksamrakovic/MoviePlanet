@@ -15,6 +15,7 @@ export class MoviesComponent implements OnInit {
   totalNowPlaying: any;
   totalPopular: any;
   totalUpcoming: any;
+  genres: any[] = [];
 
   constructor(private movieService: MoviesService, private spinner: NgxSpinnerService) { }
 
@@ -32,6 +33,14 @@ export class MoviesComponent implements OnInit {
       )
     }, 1500)
 
+
+    this.movieService.getGenres().subscribe(
+      (res: any) => {
+        console.log(res);
+        this.genres = res.genres;
+      }
+    )
+
   }
 
 
@@ -46,6 +55,14 @@ export class MoviesComponent implements OnInit {
         this.spinner.hide();
       }
     )
+  }
+
+  selectGenre(genre) {
+    console.log(genre);
+    let vm = this;
+    setTimeout(function() {
+      genre.selected = !genre.selected
+    },10);
   }
 
 }

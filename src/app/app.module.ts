@@ -22,7 +22,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-
+import {MatSelectModule} from '@angular/material/select';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -66,6 +66,7 @@ import { SearchComponent } from './components/search/search.component';
     MatAutocompleteModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
     RouterModule.forRoot(appRoutes),
     NgxSpinnerModule
   ],

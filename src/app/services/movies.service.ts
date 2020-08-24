@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +44,10 @@ export class MoviesService {
 
   searchMovie(query) {
     return this.http.get<any>(this.baseUrl + 'search/movie/?api_key=' + this.myApi + '&language=en-Us&query=' + query + '&page=1&include_adult=false');
+  }
+
+  getGenres() {
+    return this.http.get<any>(this.baseUrl + 'genre/movie/list?api_key=' + this.myApi + '&language=en-US')
   }
 
 
