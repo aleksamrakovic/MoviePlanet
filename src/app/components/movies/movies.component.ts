@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from 'src/app/services/movies.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { forkJoin } from 'rxjs';
 
 
 @Component({
@@ -17,52 +18,56 @@ export class MoviesComponent implements OnInit {
   totalUpcoming: any;
   genres: any[] = [];
 
+  selectedGenre;
+
   constructor(private movieService: MoviesService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.spinner.show();
 
-    setTimeout(() => {
-      this.movieService.getPopular(1).subscribe(
-        res => {
-          console.log(res);
-          this.totalPopular = res.total_results;
-          this.popular = res.results;
-          this.spinner.hide();
-        }
-      )
-    }, 1500)
-
-
     this.movieService.getGenres().subscribe(
       (res: any) => {
         console.log(res);
         this.genres = res.genres;
+        this.selectedGenre = this.genres[0];
+
+        this.movieService.getMoviesByGenre(this.selectedGenre.id.toString(), 1).subscribe(
+          res => {
+            console.log(res);
+            
+            this.totalPopular = res.total_results;
+            this.popular = res.results;
+            this.spinner.hide();
+          }
+        )
       }
     )
-
+    
   }
 
 
   changePage(event) {
     this.spinner.show();
-    console.log(event);
-    
-    this.movieService.getPopular(event.pageIndex + 1).subscribe(
+
+    this.movieService.getMoviesByGenre(this.selectedGenre.id, event.pageIndex + 1).subscribe(
       res => {
         console.log(res);
-        this.popular = res.results;
         this.spinner.hide();
+        this.popular = res.results;
+        this.totalPopular = res.total_results;
       }
     )
   }
 
   selectGenre(genre) {
-    console.log(genre);
-    let vm = this;
-    setTimeout(function() {
-      genre.selected = !genre.selected
-    },10);
+    this.selectedGenre = genre;
+    this.movieService.getMoviesByGenre(this.selectedGenre.id, 1).subscribe(
+      res => {
+        console.log(res);
+        this.popular = res.results;
+        this.totalPopular = res.total_results;
+      }
+    )
   }
 
 }

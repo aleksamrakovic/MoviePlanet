@@ -1,4 +1,5 @@
 .home-banner {
+    text-align: center;
     background: url('/assets/images/banner.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -13,3 +14,8 @@ header .header-title {
     font-weight: bold;
     font-size: 26px;
 }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }

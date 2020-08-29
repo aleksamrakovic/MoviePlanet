@@ -8,10 +8,23 @@ import { HttpClient } from '@angular/common/http';
 export class MoviesService {
   myApi: string;
   baseUrl: string;
+  watchlist;
 
   constructor(private http: HttpClient) {
     this.myApi = 'd3e3fb04a0c1f1d2c62ab93ab6bb1e0a';
     this.baseUrl = 'https://api.themoviedb.org/3/';
+
+    //set cart object
+    if(this.watchlist == null && localStorage.getItem('watchlist') != null) {
+      this.watchlist = JSON.parse(localStorage.getItem('watchlist'));
+    } else {
+      this.watchlist = [];
+    }
+  }
+
+  setWatchlist(watchlist) {
+    localStorage.setItem('watchlist', JSON.stringify(watchlist));
+    this.watchlist = watchlist;
   }
 
   getTopRated(page: number) {
@@ -48,6 +61,10 @@ export class MoviesService {
 
   getGenres() {
     return this.http.get<any>(this.baseUrl + 'genre/movie/list?api_key=' + this.myApi + '&language=en-US')
+  }
+
+  getMoviesByGenre(id: string, page) {
+    return this.http.get<any>(this.baseUrl + 'genre/' + id + '/movies?api_key=' + this.myApi + '&page='  + page);
   }
 
 

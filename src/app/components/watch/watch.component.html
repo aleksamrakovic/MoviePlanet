@@ -1,6 +1,6 @@
 <!-- banner -->
 <div class="jumbotron jumbotron-fluid home-banner">
-    <h1 class="display-4">Your movies to watch</h1>
+    <h1 class="display-5 app-title">Your movies to watch</h1>
 </div>
 
 <div class="container">
@@ -12,9 +12,16 @@
         </header>
 
         <div class="grid-list">
-            <div *ngFor="let movie of watchlist">
+            <div *ngFor="let movie of watchlist; let i = index" class="watch-item">
                 <app-card [model]="movie"></app-card>
+                <span class="delete" (click)="deleteItem(movie, i)">
+                    <i class="far fa-trash-alt"></i>
+                </span>
             </div>
+        </div>
+
+        <div class="info-msg" *ngIf="watchlist.length == 0">
+            <h4>No movies selected</h4>
         </div>
 
     </section>

@@ -4,7 +4,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 40vh;
+    height: 50vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -31,5 +31,65 @@ header .header-title {
 @media screen and (min-width: 500px) and (max-width:992px) {
     .grid-list {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.watch-item {
+    position: relative;
+}
+
+.watch-item:hover .delete {
+    display: flex;
+}
+
+.delete {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: rgba(0,0,0, .8);
+    
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 50px;
+}
+
+.delete i {
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .delete {
+        display: flex;
+        position: relative;
+        font-size: 20px;
+        background: #777;
+        text-align: center;
+        border: 1px solid #777;
+        padding: 10px;
+        border-radius: 2px;
+        margin-top: 10px;
+    }
+
+    .delete i {
+        animation: none;
     }
 }

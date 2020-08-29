@@ -1,6 +1,6 @@
 <!-- banner -->
 <div class="jumbotron jumbotron-fluid home-banner">
-    <h1 class="display-4">All movies here for you</h1>
+    <h1 class="display-5 app-title">All movies here for you</h1>
 </div>
 
 <div class="container">
@@ -14,8 +14,8 @@
         <div class="row mb-4">
             <div class="col-sm-12">
                 <!-- filters -->
-                <mat-chip-list aria-label="Genre selection" [multiple]="true" [selectable]="true">
-                    <mat-chip *ngFor="let genre of genres" #chip="matChip" (click)="chip.select()" (selectionChange)="selectGenre($event)">{{genre.name}}</mat-chip>
+                <mat-chip-list aria-label="Genre selection" [selectable]="true">
+                    <mat-chip *ngFor="let genre of genres" #chip="matChip" (click)="chip.select()" (selectionChange)="selectGenre(genre)">{{genre.name}}</mat-chip>
                   </mat-chip-list>
             </div>
         </div>

@@ -5,6 +5,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { forkJoin, Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Location } from '@angular/common';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-movie',
@@ -23,15 +24,9 @@ export class MovieComponent implements OnInit {
 
   ngOnInit(): void {
     this.spinner.show();
-    
-    if (JSON.parse(localStorage.getItem('watchlist'))) {
-      this.watchlist = JSON.parse(localStorage.getItem('watchlist'));
-      console.log(this.watchlist);
-      
-    } else {
-      this.watchlist = [];
-    }
-    
+
+    this.watchlist = this.movieService.watchlist;
+
     this.route.params.subscribe(
       res => {
         this.movieId = res.id;
@@ -41,7 +36,7 @@ export class MovieComponent implements OnInit {
         let res3 = this.getSimilar(this.movieId);
         let res4 = this.getTrailer(this.movieId);
 
-        forkJoin(res1,res2,res3,res4).subscribe(results => {
+        forkJoin(res1, res2, res3, res4).subscribe(results => {
           console.log(results);
           this.model = results[0];
           this.cast = results[1].cast;
@@ -54,36 +49,37 @@ export class MovieComponent implements OnInit {
     );
   }
 
-  getDetails(id):Observable<any> {
+  getDetails(id): Observable<any> {
     return this.movieService.getDetails(id)
   }
 
-  getActors(id):Observable<any> {
+  getActors(id): Observable<any> {
     return this.movieService.getCredits(id)
   }
 
-  getSimilar(id):Observable<any> {
+  getSimilar(id): Observable<any> {
     return this.movieService.getSimilar(id)
   }
 
-  getTrailer(id):Observable<any> {
+  getTrailer(id): Observable<any> {
     return this.movieService.getTrailer(id)
   }
 
   addToWatchlist(model) {
-    console.log(model);
-    
-    console.log(this.watchlist);
+    var item = model;
 
-    var index = this.watchlist.includes(model);
-    if (index) {
-      this._snackBar.open('Movie is already in the watchlist', 'Close', { duration: 5000 });
-    } else {
-      this.watchlist.push(model);
-      localStorage.setItem('watchlist', JSON.stringify(this.watchlist));
+    var find = this.watchlist.find(el => el.id == model.id);
+    console.log(find);
+    
+    if (find == undefined) {
+      this.watchlist.push(item);
+      this.movieService.setWatchlist(this.watchlist);
       this._snackBar.open('Movie has been added to your watchlist', 'Close', { duration: 5000 });
+    } else {
+      this._snackBar.open('Movie is already in your watchlist', 'Close', { duration: 5000 });
     }
   }
+
 
   goBack() {
     this.location.back();

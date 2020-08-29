@@ -33,6 +33,7 @@ import { MovieComponent } from './components/movie/movie.component';
 import { WatchComponent } from './components/watch/watch.component';
 import { FilterPipe } from './services/filter.pipe';
 import { SearchComponent } from './components/search/search.component';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { SearchComponent } from './components/search/search.component';
     WatchComponent,
     FilterPipe,
     SearchComponent,
+    AboutComponent,
   ],
   imports: [
     HttpClientModule,

@@ -1,6 +1,6 @@
 <!-- banner -->
 <div class="jumbotron jumbotron-fluid home-banner">
-    <h1 class="display-4">Movie details</h1>
+    <h1 class="display-5 app-title">Movie details</h1>
 </div>
 
 <div class="container">
@@ -8,7 +8,7 @@
     <section>
         <header class="header">
             <div class="header-title mb-2">
-                <span (click)="goBack()"><< Back to all movies</span>
+                <span (click)="goBack()"><< Back</span>
             </div>
         </header>
 
@@ -39,7 +39,7 @@
                         </p>
                         <p class="card-text">
                             <mat-chip-list aria-label="actions">
-                                <mat-chip color="accent" selected (click)="addToWatchlist(model)">Add to watchlist</mat-chip>
+                                <mat-chip (click)="addToWatchlist(model)">Add to watchlist</mat-chip>
                             </mat-chip-list>
                         </p>
                     </div>

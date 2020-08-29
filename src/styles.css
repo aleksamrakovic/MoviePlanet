@@ -4,6 +4,12 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.app-title {
+    background: rgba(0, 0, 0, .6);
+    padding: 25px;
+    border-radius: 100px;
+}
+
 .grid-list {
     margin-top: 10px;
     display: grid;
